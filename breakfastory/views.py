@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from .forms import MealTypeForm
 from .models import MealType
 
-# Create your views here.
 
 def index(request):
     """The home page for Breakfastory"""
@@ -20,3 +20,19 @@ def meal_type(request, mealtype_id):
     entries = meal_type.entry_set.order_by('-date_added')
     context = {'meal_type': meal_type, 'entries': entries}
     return render(request, 'breakfastory/mealtype.html', context)
+
+def new_meal_type(request):
+    """Add a new meal type."""
+    if request.method != 'POST':
+        # No data submitted; create a blank form.
+        form = MealTypeForm()
+    else:
+        # POST data submitted; process data.
+        form = MealTypeForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('breakfastory:meal_types')
+        
+    # Display a blank or invalid form.
+    context = {'form': form}
+    return render(request, 'breakfastory/new_mealtype.html', context)

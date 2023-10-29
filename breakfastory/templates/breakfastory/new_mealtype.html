@@ -1,0 +1,12 @@
+{% extends 'breakfastory/base.html' %}
+
+{% block content %}
+  <p>Add a new meal type:</p>
+
+  <form action="{% url 'breakfastory:new_meal_type' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button name="submit">Add meal type</button>
+  </form>
+
+{% endblock content %}
