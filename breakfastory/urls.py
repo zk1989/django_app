@@ -9,9 +9,11 @@ urlpatterns = [
     # Home page
     path('', views.index, name='index'),
     # Page that shows all meal types.
-    path('mealtypes/', views.meal_types, name='meal_types'),
+    path('meal_types/', views.meal_types, name='meal_types'),
     # Detail page for a single meal type.
-    path('mealtypes/<int:mealtype_id>/', views.meal_type, name='meal_type'),
+    path('meal_types/<int:meal_type_id>/', views.meal_type, name='meal_type'),
     # Page for adding a new meal type.
-    path('new_mealtype', views.new_meal_type, name='new_meal_type'),
+    path('new_meal_type', views.new_meal_type, name='new_meal_type'),
+    # Page for adding a new entry.
+    path('new_entry/<int:meal_type_id>/', views.new_entry, name='new_entry'),
 ]

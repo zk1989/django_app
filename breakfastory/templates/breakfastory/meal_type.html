@@ -2,9 +2,13 @@
 
 {% block content %}
 
-  <p>Meal Type: {{meal_type.text }}</p>
+  <p>Meal Type: {{ meal_type.text }}</p>
 
   <p>Entries:</p>
+  <p>
+    <a href = "{% url 'breakfastory:new_entry' meal_type.id %}">Add new entry</a>
+  </p>
+
   <ul>
     {% for entry in entries %}
       <li>
