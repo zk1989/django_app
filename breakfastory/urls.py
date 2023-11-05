@@ -16,4 +16,6 @@ urlpatterns = [
     path('new_meal_type', views.new_meal_type, name='new_meal_type'),
     # Page for adding a new entry.
     path('new_entry/<int:meal_type_id>/', views.new_entry, name='new_entry'),
+    # Page for editing an entry.
+    path('edit_entry/<int:entry_id/', views.edit_entry, name='edit_entry'),
 ]

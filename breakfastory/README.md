@@ -1,0 +1,3 @@
+Breakfastory is a repository of ideas for breakfasts, lunches, suppers, etc. These are not recipes. The target audience is people who enter the shop after work and are confused and resignated when days are already so full of decision-making. Sometimes it's hard to even think of WHAT to eat, let alone how to prepare it. This is why the ideas here are short, the ingredients easily available in the well-known shops, usually opened all day long.
+
+Breakfastory was created as a practice / exercise while going through Python Crash Course 3rd Edition (2023). The code is strictly based on Chapters 18, 19 and 20.

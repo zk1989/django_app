@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .forms import MealTypeForm, EntryForm
-from .models import MealType
+from .models import MealType, Entry
 
 
 def index(request):
@@ -57,3 +57,20 @@ def new_entry(request, meal_type_id):
     context = {'meal_type': meal_type, 'form': form}
     return render(request, 'breakfastory/new_entry.html', context)
 
+def edit_entry(request, entry_id):
+    """Edit an existing entry."""
+    entry = Entry.objects.get(id=entry_id)
+    meal_type = entry.meal_type
+
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+        form = EntryForm(instance=entry)
+    else:
+        # POST data submitted; process data.
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('breakfastory:meal_type', meal_type_id=meal_type.id)
+        
+    context = {'entry': entry, 'meal_type': meal_type, 'form': form}
+    return render(request, 'breakfastory/edit_entry.html', context)
