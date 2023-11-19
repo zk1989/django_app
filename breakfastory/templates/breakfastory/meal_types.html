@@ -1,17 +1,19 @@
 {% extends 'breakfastory/base.html' %}
 
+{% block page_header %}
+  <h1>Meal types</h1>
+{% endblock page_header %}
+
 {% block content %}
 
-  <p>Meal Types</p>
-
-  <ul>
+  <ul class="list-group border-bottom pb-2 mb-4">
     {% for meal_type in meal_types %}
-      <li>
+      <li class="list-group-item border-0">
         <a href="{% url 'breakfastory:meal_type' meal_type.id %}">
           {{ meal_type.text }}</a>
       </li>
     {% empty %}
-      <li>No meal types have been added yet.</li>
+      <li class="list-group-item border-0">No meal types have been added yet.</li>
     {% endfor %}
   </ul>
 

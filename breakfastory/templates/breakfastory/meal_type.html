@@ -1,24 +1,27 @@
 {% extends 'breakfastory/base.html' %}
 
+{% block page_header %}
+  <h1>{{ meal_type.text }}</h1>
+{% endblock page_header %}
+
 {% block content %}
 
-  <p>Meal Type: {{ meal_type.text }}</p>
-
-  <p>Entries:</p>
   <p>
     <a href = "{% url 'breakfastory:new_entry' meal_type.id %}">Add new entry</a>
   </p>
 
-  <ul>
-    {% for entry in entries %}
-      <li>
-        <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-        <p>{{ entry.text|linebreaks }}</p>
-        <p><a href="{% url 'breakfastory:edit_entry' entry.id %}">Edit entry</a></p>
-      </li>
-    {% empty %}
-      <li>There are no entries for this meal type yet.</li>
-    {% endfor %}
-  </ul>
+  {% for entry in entries %}
+    <div class="card mb-3">
+      <!-- Card header with timestamp and edit link -->
+      <h4 class="card-header">
+        {{ entry.date_added|date:'M d, Y H:i' }}
+        <small><a href="{% url 'breakfastory:edit_entry' entry.id %}">Edit entry</a></small>
+      </h4>
+      <!-- Card body with entry text -->
+      <div class="card-body">{{ entry.text|linebreaks }}</div>
+    </div>
+  {% empty %}
+    <p>There are no entries for this meal type yet.</p>
+  {% endfor %}
 
 {% endblock content %}

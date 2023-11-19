@@ -1,12 +1,13 @@
 {% extends 'breakfastory/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
   <p>Add a new meal type:</p>
 
   <form action="{% url 'breakfastory:new_meal_type' %}" method="post">
     {% csrf_token %}
-    {{ form.as_div }}
-    <button name="submit">Add meal type</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Add meal type" %}
   </form>
 
 {% endblock content %}

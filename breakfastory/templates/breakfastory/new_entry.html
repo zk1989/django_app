@@ -1,14 +1,17 @@
 {% extends 'breakfastory/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+  <h2><a href="{% url 'breakfastory:meal_type' meal_type.id %}">{{ meal_type.text }}</a></h2>
+{% endblock page_header %}
 
 {% block content %}
-
-  <p><a href="{% url 'breakfastory:meal_type' meal_type.id %}">{{ mealtype.text }}</a></p>
   
   <p>Add a new entry:</p>
   <form action="{% url 'breakfastory:new_entry' meal_type.id %}" method="post">
     {% csrf_token %}
-    {{ form.as_div }}
-    <button name="submit">Add entry</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Add entry" %}
   </form>
 
 {% endblock content %}
